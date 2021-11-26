@@ -5,8 +5,11 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- main
-- another-test
+  branches:
+    include:
+      - main
+      - another-test
+
 
 pool:
   vmImage: ubuntu-latest
@@ -16,8 +19,17 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonar-connection'
+    organization: 'hieuls369'
+    scannerMode: 'MSBuild'
+    projectKey: 'Hieuls369_test-sonar'
+    projectName: 'test-sonar'
 
 - script: |
     npm install
     npm run build
   displayName: 'npm install and build'
+
+- task: SonarCloudAnalyze@1
