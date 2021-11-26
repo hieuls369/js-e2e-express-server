@@ -1,5 +1,6 @@
 # Node.js
 
+
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
@@ -24,7 +25,7 @@ steps:
     SonarCloud: 'sonar-connection'
     organization: 'hieuls369'
     scannerMode: 'MSBuild'
-    projectKey: 'Hieuls369_test-sonar'
+    projectKey: 'test-sonar'
     projectName: 'test-sonar'
 
 - script: |
@@ -33,3 +34,7 @@ steps:
   displayName: 'npm install and build'
 
 - task: SonarCloudAnalyze@1
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
