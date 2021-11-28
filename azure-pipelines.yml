@@ -7,11 +7,10 @@
 
 trigger:
 - main
-- another-test
 
 
 pool:
-  vmImage: windows-latest
+  vmImage: 'windows-latest'
 
 steps:
 - task: NodeTool@0
@@ -22,10 +21,10 @@ steps:
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'sonar-connection'
-    organization: 'hieuls369'
+    organization: 'hieunv49'
     scannerMode: 'MSBuild'
-    projectKey: 'Hieuls369_test-sonar'
-    projectName: 'test-sonar'
+    projectKey: 'HieuNV49_sonar-demo'
+    projectName: 'sonar-demo'
 
 - script:
     npm install
